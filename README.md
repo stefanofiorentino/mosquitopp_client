@@ -1,4 +1,4 @@
-# mosquitopp_client
+# mosquittopp_client
 A sample MQTT client built to use the mosquittopp library.
 
 I was struggling to find any complete example code for using the C++ bindings for the Mosquitto library on the web, so having got something working, I thought I'd share in case anyone else wanted to see how it works.
