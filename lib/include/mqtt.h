@@ -22,10 +22,10 @@
 class mqtt_client : public mosqpp::mosquittopp
 {
     int rc;
-    std::function<void(std::string const &)> func;
+    std::function<void(std::string const &)> onMessage;
 
 public:
-    mqtt_client(const char *id, const char *host, int port, std::function<void(std::string const &)> const &func);
+    mqtt_client(const char *id, const char *host, int port, std::function<void(std::string const &)> const &onMessage);
 
     void on_connect(int rc) override;
 

@@ -1,10 +1,10 @@
 #include "include/mqtt.h"
 
-mqtt_client::mqtt_client(const char *id, const char *host, int port, std::function<void(std::string const &)> const &func) :
+mqtt_client::mqtt_client(const char *id, const char *host, int port, std::function<void(std::string const &)> const &onMessage) :
         mosquittopp(id)
 {
     int keepalive = DEFAULT_KEEP_ALIVE;
-    mqtt_client::func = func;
+    mqtt_client::onMessage = onMessage;
     connect(host, port, keepalive);
 }
 
@@ -38,7 +38,7 @@ void mqtt_client::on_message(const struct mosquitto_message *message)
         memcpy(buf, message->payload, MAX_PAYLOAD * sizeof(char));
 
         // call the callback
-        func(std::string(buf));
+        onMessage(std::string(buf));
     }
 }
 
