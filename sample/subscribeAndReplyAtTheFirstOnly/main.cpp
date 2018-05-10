@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
                                {
                                    if (numOfSentMessage < 1)
                                    {
-                                       iot_client.publish(NULL, PUBLISH_TOPIC, strlen(message.c_str()),
+                                       iot_client.publish(NULL, REQUEST_TOPIC, strlen(message.c_str()),
                                                           message.c_str());
                                        numOfSentMessage++;
                                        std::cout << "Status request re-sent: " << message << std::endl;

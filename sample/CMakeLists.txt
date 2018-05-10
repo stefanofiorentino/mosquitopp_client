@@ -1,1 +1,2 @@
 add_subdirectory(subscribeAndReplyAtTheFirstOnly)
+add_subdirectory(publishAndWaitForResponseWithTimeout)

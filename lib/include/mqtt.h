@@ -14,8 +14,8 @@
 
 #endif
 
-#define PUBLISH_TOPIC "EXAMPLE_TOPIC"
-#define MQTT_TOPIC "EXAMPLE_TOPIC"
+#define REQUEST_TOPIC "REQUEST"
+#define RESPONSE_TOPIC "RESPONSE"
 #define MAX_PAYLOAD 50
 #define DEFAULT_KEEP_ALIVE 60
 
@@ -33,6 +33,7 @@ public:
 
     void on_message(const struct mosquitto_message *message) override;
 
+    void publishAndWaitForResponseWithTimeout(std::string const &message, std::function<void()> const &onReply, std::function<void()> const &onTimeout);
     void start_loop();
 
 };
