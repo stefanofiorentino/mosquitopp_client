@@ -15,11 +15,6 @@ int main(int argc, char *argv[])
 
     mosqpp::lib_init();
 
-    if (argc > 1)
-    {
-        strcpy(host, argv[1]);
-    }
-
     bool finished = false;
     int numOfSentMessage = 0;
     mqtt_client iot_client(client_id, host, port,
@@ -31,15 +26,15 @@ int main(int argc, char *argv[])
                                {
                                    if (numOfSentMessage < 1)
                                    {
-                                       iot_client.publish(NULL, PUBLISH_TOPIC, strlen(message.c_str()),
-                                                          message.c_str());
+                                       iot_client.publish(nullptr, PUBLISH_TOPIC,
+                                                          static_cast<int>(strlen(message.c_str())), message.c_str());
                                        numOfSentMessage++;
                                        std::cout << "Status request re-sent: " << message << std::endl;
                                        return;
                                    }
-                                   #ifdef DEBUG
-                                       std::cout << "Status request received: " << message << std::endl;
-                                   #endif
+#ifdef DEBUG
+                                   std::cout << "Status request received: " << message << std::endl;
+#endif
                                }
                            });
 

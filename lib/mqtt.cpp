@@ -1,10 +1,9 @@
 #include "include/mqtt.h"
 
 mqtt_client::mqtt_client(const char *id, const char *host, int port, std::function<void(std::string const &)> const &onMessage) :
-        mosquittopp(id)
+        mosquittopp(id), onMessage(onMessage), rc(0)
 {
     int keepalive = DEFAULT_KEEP_ALIVE;
-    mqtt_client::onMessage = onMessage;
     connect(host, port, keepalive);
 }
 
