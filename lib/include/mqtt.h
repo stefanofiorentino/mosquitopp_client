@@ -9,9 +9,7 @@
 #include <thread>
 
 #ifdef DEBUG
-
 #include <iostream>
-
 #endif
 
 #define PUBLISH_TOPIC "EXAMPLE_TOPIC"
@@ -25,16 +23,15 @@ class mqtt_client : public mosqpp::mosquittopp
     std::function<void(std::string const &)> onMessage;
 
 public:
-    mqtt_client(const char *id, const char *host, int port, std::function<void(std::string const &)> const &onMessage);
+    mqtt_client(std::string const &, std::string const &, int port, std::function<void(std::string const &)> const &onMessage);
 
-    void on_connect(int rc) override;
+    void on_connect(int rc) final;
 
-    void on_subscribe(int mid, int qos_count, const int *granted_qos) override;
+    void on_subscribe(int mid, int qos_count, const int *granted_qos) final;
 
-    void on_message(const struct mosquitto_message *message) override;
+    void on_message(const struct mosquitto_message *message) final;
 
-    void start_loop();
-
+    void loop_forever();
 };
 
 #endif //SIMPLECLIENT_MQTT_H

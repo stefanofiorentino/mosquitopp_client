@@ -1,0 +1,3 @@
+add_executable(mosquittopp_client main.cpp)
+target_include_directories(mosquittopp_client PRIVATE ${CMAKE_SOURCE_DIR}/lib/include)
+target_link_libraries(mosquittopp_client PRIVATE mosquittopp mosquittoppWrapperLib)
